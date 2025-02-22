@@ -1,3 +1,5 @@
+package Views;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -60,17 +62,6 @@ class Carrito implements ICarrito {
     public List<Producto> obtenerProductos() {
         return productos;
     }
-    
-    public String generarTicket() {
-        StringBuilder ticket = new StringBuilder("--- Ticket de Compra ---\n");
-        for (Producto p : productos) {
-            ticket.append(p.getNombre()).append(" x ")
-                  .append(p.getCantidad()).append(" - $")
-                  .append(p.calcularSubtotal()).append("\n");
-        }
-        ticket.append("Total: $").append(calcularTotal()).append("\n----------------------------");
-        return ticket.toString();
-    }
 }
 
 // Interfaz Gráfica
@@ -110,15 +101,13 @@ public class CarritoGUI extends JFrame {
         table = new JTable(tableModel);
         add(new JScrollPane(table), BorderLayout.CENTER);
         
-        // Panel inferior con total, eliminar y ticket
+        // Panel inferior con total y eliminar
         JPanel panelBottom = new JPanel();
-        panelBottom.setLayout(new GridLayout(3, 1));
+        panelBottom.setLayout(new GridLayout(2, 1));
         lblTotal = new JLabel("Total: $0.00");
         panelBottom.add(lblTotal);
         JButton btnEliminar = new JButton("Eliminar Producto Seleccionado");
         panelBottom.add(btnEliminar);
-        JButton btnTicket = new JButton("Generar Ticket");
-        panelBottom.add(btnTicket);
         add(panelBottom, BorderLayout.SOUTH);
 
         // Acción botón Agregar
@@ -146,14 +135,6 @@ public class CarritoGUI extends JFrame {
                 }
             }
         });
-        
-        // Acción botón Ticket
-        btnTicket.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, carrito.generarTicket(), "Ticket de Compra", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
     }
 
     private void actualizarTabla() {
@@ -165,11 +146,6 @@ public class CarritoGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new CarritoGUI().setVisible(true);
-            }
-        });
+        SwingUtilities.invokeLater(() -> new CarritoGUI().setVisible(true));
     }
 }
