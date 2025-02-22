@@ -1,6 +1,6 @@
 package views;
 
-import controllers.CarritoController;
+import Controller.CarritoController;
 import models.Producto;
 
 import javax.swing.*;
@@ -8,10 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame {
+public class CarritoFrame extends JFrame {
     private CarritoController carritoController = new CarritoController();
 
-    public MainFrame() {
+    public CarritoFrame() {
         setTitle("TechMarket - Tienda Tecnológica");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

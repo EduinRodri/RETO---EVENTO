@@ -1,4 +1,4 @@
-package Controller;
+package models;
 
 public class Electronico extends Producto {
     // Constructor

@@ -1,4 +1,4 @@
-package Controller;
+package models;
 
 public class Usuario {
     private String nombre;

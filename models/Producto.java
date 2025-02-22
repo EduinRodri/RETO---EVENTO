@@ -1,4 +1,4 @@
-package Controller;
+package models;
 
 public abstract class Producto implements IDescuentoAplicable {
     // Atributos
